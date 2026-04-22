@@ -454,7 +454,6 @@ fun showAllTodos(logic: Logic) {
                                             expanded = false
                                             logic.editTodoId = todo.id
                                             logic.showEditTodoMenu = true
-                                            logic.showAllTodos = false
                                         }
                                     )
                                     DropdownMenuItem(

@@ -170,23 +170,27 @@ fun welcomeMessage(logic: Logic, time: Time) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 text = todo.title,
-                                style = MaterialTheme.typography.titleMedium)
+                                style = MaterialTheme.typography.titleMedium
+                            )
                             Text(
                                 text = todo.description,
                                 style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
                             Text(
                                 text = "Created at: ${todo.createdAt}",
-                                style = MaterialTheme.typography.bodySmall,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
                             if (todo.createdAt != todo.modifiedAt) {
                                 Text(
                                     text = "Modified at: ${todo.modifiedAt}",
-                                    style = MaterialTheme.typography.bodySmall,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
@@ -487,8 +491,8 @@ fun showAllTodos(logic: Logic) {
 }
 
 @Composable
-fun openTodoEditor(logic: Logic, todo_id: Int) {
-    val todo = logic.getTodo(todo_id) ?: return
+fun openTodoEditor(logic: Logic, todoId: Int) {
+    val todo = logic.getTodo(todoId) ?: return
 
     var title by remember { mutableStateOf(todo.title) }
     var description by remember { mutableStateOf(todo.description) }
@@ -552,7 +556,7 @@ fun openTodoEditor(logic: Logic, todo_id: Int) {
                     Button(
                         onClick = {
                             if (title.isNotBlank()) {
-                                logic.updateTodo(todo_id, title = title, description = description)
+                                logic.updateTodo(todoId, title = title, description = description)
                             }
                             logic.showEditTodoMenu = false
                             logic.editTodoId = null
